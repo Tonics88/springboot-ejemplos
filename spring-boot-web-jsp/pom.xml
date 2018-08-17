@@ -49,6 +49,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Herramineta que permite deshabilitar la cache y por ir actulizando en el navegador -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
