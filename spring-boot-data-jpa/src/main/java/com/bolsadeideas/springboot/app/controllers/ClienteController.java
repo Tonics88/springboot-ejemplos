@@ -1,7 +1,7 @@
 package com.bolsadeideas.springboot.app.controllers;
 
-import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
+import com.bolsadeideas.springboot.app.models.service.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,14 +21,14 @@ import java.util.Map;
 public class ClienteController {
 
     @Autowired
-    @Qualifier("clienteDaoJPA") // No es necesario porque solo tenemos una, si tenemos implementadas mas de una si.
-    private IClienteDao clienteDao;
+    @Qualifier("clienteServiceJPA") // No es necesario porque solo tenemos una, si tenemos implementadas mas de una si.
+    private IClienteService clienteService;
 
     @RequestMapping(value = "listar", method = RequestMethod.GET)
     public String lista(Model model) {
 
         model.addAttribute("titulo", "Listado de clientes");
-        model.addAttribute("clientes", clienteDao.findAll());
+        model.addAttribute("clientes", clienteService.findAll());
 
         return "listar";
     }
@@ -49,7 +49,7 @@ public class ClienteController {
         Cliente cliente = null;
 
         if (id>0) {
-            cliente = clienteDao.findOne(id);
+            cliente = clienteService.findOne(id);
         } else {
             return "redirect:/listar";
         }
@@ -66,7 +66,7 @@ public class ClienteController {
             model.addAttribute("titulo", "Formulario de Cliente");
             return "form";
         }
-        clienteDao.save(cliente);
+        clienteService.save(cliente);
         status.setComplete();
         return "redirect:listar";
     }
@@ -76,7 +76,7 @@ public class ClienteController {
 
 
         if (id>0) {
-            clienteDao.delete(id);
+            clienteService.delete(id);
         }
 
         return "redirect:/listar";
