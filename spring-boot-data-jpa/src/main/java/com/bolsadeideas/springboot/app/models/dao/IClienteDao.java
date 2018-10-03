@@ -2,7 +2,8 @@ package com.bolsadeideas.springboot.app.models.dao;
 
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface IClienteDao extends CrudRepository<Cliente, Long> { //SE podria usar JPARepository que tiene mas funciones
+public interface IClienteDao extends PagingAndSortingRepository<Cliente, Long> { //SE podria usar JPARepository que tiene mas funciones
 
 }
